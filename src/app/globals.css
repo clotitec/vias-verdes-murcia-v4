@@ -1,26 +1,324 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-murcia-primary: #5A9E8F;
+  --color-murcia-light: #7DBCAD;
+  --color-murcia-dark: #1E3330;
+  --color-murcia-glow: #9ED1C4;
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Background */
+  --bg-primary: #F4F3EE;
+  --bg-secondary: rgba(230, 240, 237, 0.45);
+  --bg-sidebar: rgba(244, 243, 238, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.55);
+  --modal-bg: rgba(244, 243, 238, 0.92);
+  --input-bg: rgba(255, 255, 255, 0.55);
+
+  /* Text */
+  --text-primary: #2C3E3A;
+  --text-secondary: #5A7A72;
+  --text-muted: #8FA39C;
+
+  /* Murcia Colors */
+  --murcia-primary: #5A9E8F;
+  --murcia-light: #7DBCAD;
+  --murcia-dark: #1E3330;
+  --murcia-glow: #9ED1C4;
+
+  /* Glass Effects */
+  --glass-blur: blur(40px) saturate(180%);
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: 1px solid rgba(201, 212, 196, 0.4);
+  --glass-shadow: 0 8px 32px rgba(30, 51, 48, 0.08);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  /* Badges */
+  --badge-easy-bg: rgba(5, 150, 105, 0.1);
+  --badge-easy-color: #059669;
+  --badge-medium-bg: rgba(217, 119, 6, 0.1);
+  --badge-medium-color: #D97706;
+  --badge-moderate-bg: rgba(234, 88, 12, 0.1);
+  --badge-moderate-color: #EA580C;
+  --badge-operational-bg: rgba(5, 150, 105, 0.1);
+  --badge-operational-color: #059669;
+  --badge-coming-bg: rgba(107, 114, 128, 0.1);
+  --badge-coming-color: #6B7280;
+
+  /* Button */
+  --btn-secondary-bg: rgba(255, 255, 255, 0.6);
+}
+
+/* ================ GLOBAL ================ */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ================ LIQUID GLASS ================ */
+.liquid-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+}
+
+.glass-stat {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(201, 212, 196, 0.35);
+  box-shadow: 0 4px 16px rgba(30, 51, 48, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.header-liquid {
+  background: linear-gradient(135deg, rgba(90, 158, 143, 0.9), rgba(30, 51, 48, 0.85));
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* ================ CARDS ================ */
+.card-item {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 212, 196, 0.35);
+  border-radius: 16px;
+  padding: 12px;
+  transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: 0 2px 8px rgba(30, 51, 48, 0.04);
+}
+.card-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(30, 51, 48, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* ================ BADGES ================ */
+.badge-easy {
+  background: var(--badge-easy-bg);
+  color: var(--badge-easy-color);
+}
+.badge-medium {
+  background: var(--badge-medium-bg);
+  color: var(--badge-medium-color);
+}
+.badge-moderate {
+  background: var(--badge-moderate-bg);
+  color: var(--badge-moderate-color);
+}
+.badge-operational {
+  background: var(--badge-operational-bg);
+  color: var(--badge-operational-color);
+}
+.badge-coming-soon {
+  background: var(--badge-coming-bg);
+  color: var(--badge-coming-color);
+}
+
+/* ================ BUTTONS ================ */
+.btn-glass-primary {
+  background: var(--murcia-primary);
+  color: white;
+  border: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-glass-primary:hover {
+  background: var(--murcia-dark);
+  transform: translateY(-1px);
+}
+
+.btn-glass-secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--text-primary);
+  border: 1px solid rgba(201, 212, 196, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-glass-secondary:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-1px);
+}
+
+/* ================ SEARCH ================ */
+.search-glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  border: 1px solid rgba(201, 212, 196, 0.5);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  outline: none;
+  color: var(--text-primary);
+}
+.search-glass:focus {
+  border-color: var(--murcia-primary);
+  box-shadow: 0 0 0 3px rgba(90, 158, 143, 0.15);
+}
+.search-glass::placeholder {
+  color: var(--text-muted);
+}
+
+/* ================ TAB BAR ================ */
+.tab-bar-glass {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px);
+  border-radius: 12px;
+  padding: 3px;
+}
+.tab-item-glass {
+  transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ================ MAP CONTROLS ================ */
+.map-control-glass {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 212, 196, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-primary);
+}
+.map-control-glass:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+.map-control-glass.active {
+  background: var(--murcia-primary);
+  color: white;
+  border-color: var(--murcia-primary);
+}
+
+/* ================ MODAL ================ */
+.detail-modal-glass {
+  background: var(--modal-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ================ ANIMATIONS ================ */
+@keyframes springIn {
+  0% {
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-2%) scale(1.01);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes modalPop {
+  0% { transform: translateY(30px) scale(0.96); opacity: 0; }
+  70% { transform: translateY(-3px) scale(1.01); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.animate-spring-in {
+  animation: springIn 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.animate-modal-pop {
+  animation: modalPop 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ================ SCROLLBAR ================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(90, 158, 143, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(90, 158, 143, 0.4);
+}
+
+/* ================ MAPLIBRE OVERRIDES ================ */
+.maplibregl-ctrl-top-right {
+  top: 10px !important;
+  right: 10px !important;
+}
+
+.maplibregl-ctrl-group {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(201, 212, 196, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden;
+}
+
+.maplibregl-ctrl-group button {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+/* ================ RESPONSIVE ================ */
+@media (max-width: 768px) {
+  .map-control-glass {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+}
+
+/* ================ SAFE AREA (iOS) ================ */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
